@@ -2,6 +2,7 @@
 
 Saillog.Editor = {
 	showEditor: function (id) {
+		console.log(id)
 		if (!this._story) {
 			return;
 		}

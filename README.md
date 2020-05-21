@@ -3,16 +3,10 @@ Zeillogs
 
 A nice way to present stories about sailing.
 
-http://jieter.github.io/saillogs/
 
-## Start server
-After `npm install` run `grunt`. For the read-only case, every static webserver should work.
+Original: http://jieter.github.io/saillogs/
+https//github.com/jieter/saillogs
 
-## grunt tasks
-
-```
-grunt import-sailplanner:<key>
-```
 
 ## Attribution
  - Leaflet https://github.com/Leaflet/Leaflet
@@ -21,4 +15,3 @@ grunt import-sailplanner:<key>
  - Mourners's SunCalc https://github.com/mourner/suncalc
  - EpicEditor https://github.com/OscarGodson/EpicEditor
  - jQuery https://github.com/jquery/jquery
-

@@ -1,0 +1,143 @@
+{
+	"id": "2020-test",
+	"properties": {
+		"title": "Alle mogelijkheden",
+		"originalURL": "http://sailplanner.nl/view/key:f03bbc7439",
+		"description": "Hallo dit is een test. Het omvat de meeste features geimplementeerd door Jieter. Even ontdekken dus..",
+		"average": 5,
+		"showTimeline": true,
+		"showTrack": true,
+		"units": "nm",
+		"showCalendar": true,
+		"baselayer": false
+	},
+	"features": [
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Inleiding",
+			"text": "Eventueel een inleidende tekst.",
+			"date": "",
+			"color": "#000000",
+			"average": 5
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Teksthints",
+			"text": "Dit is een  <abbr title=\"Elektronisch kompas voor stuurautomaat en plotter.\">fluxgate-kompas</abbr>\n\nEnters\n\n\n\nEn <em>cursief.</em>\n\nOf **vette** tekst.",
+			"date": "2015-07-08",
+			"color": "#ff0000",
+			"startTime": "2015-07-08T07:18:31Z",
+			"endTime": "2015-07-08T16:01:39Z",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.118156433105468,51.82103101804979],[4.114894866943359,51.81455800703693],[4.049320220947266,51.82368362277163],[4.0450286865234375,51.82071269498748],[4.031124114990234,51.82856400738683],[4.036788940429687,51.833019548947135],[4.0338706970214835,51.84914068201114],[4.021339416503906,51.85719908388728],[4.002285003662109,51.85857735020976],[3.9736175537109375,51.84892859931685],[3.939285278320312,51.84670167069022],[3.9027214050292964,51.85507859171898],[3.9276123046874996,51.95569164116401],[3.9918136596679683,51.99566238276494],[4.072151184082031,51.98593733733687],[4.129829406738281,51.97176881859014],[4.1782379150390625,51.94913218923517],[4.221067428588867,51.931617984993466],[4.236001968383789,51.91986746696141],[4.244327545166016,51.91596317943724],[4.245829582214355,51.915433758378875],[4.2484259605407715,51.9174058201392]]
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Link",
+			"text": "Je kunt een [linkje](https://en.wikipedia.org/wiki/Broch_of_Mousa) in de tekst verstoppen.\n\nJe kunt dan ook naar een [andere pagina](/#2015-zomerzeilen) verwijzen.",
+			"date": "2015-07-08",
+			"color": "#ff0000",
+			"startTime": "2015-07-08T07:18:31Z",
+			"endTime": "2015-07-08T16:01:39Z",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.118156433105468,51.82103101804979],[4.114894866943359,51.81455800703693],[4.049320220947266,51.82368362277163],[4.0450286865234375,51.82071269498748],[4.031124114990234,51.82856400738683],[4.036788940429687,51.833019548947135],[4.0338706970214835,51.84914068201114],[4.021339416503906,51.85719908388728],[4.002285003662109,51.85857735020976],[3.9736175537109375,51.84892859931685],[3.939285278320312,51.84670167069022],[3.9027214050292964,51.85507859171898],[3.9276123046874996,51.95569164116401],[3.9918136596679683,51.99566238276494],[4.072151184082031,51.98593733733687],[4.129829406738281,51.97176881859014],[4.1782379150390625,51.94913218923517],[4.221067428588867,51.931617984993466],[4.236001968383789,51.91986746696141],[4.244327545166016,51.91596317943724],[4.245829582214355,51.915433758378875],[4.2484259605407715,51.9174058201392]]
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"text": "Een plaatje kun je invoegen zoals hiernaast. De bovenkant van het plaatje begint dan daar waar je hem hebt ingevoegd. ![Brand spankin' nieuwe jachthaven van Maassluis](maassluis.jpg)",
+			"title": "Een plaatje ernaast",
+			"color": "#000000",
+			"date": "2015-07-09",
+			"startTime": "2015-07-09T07:18:31Z",
+			"duration": 100000,
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.24896240234375,51.921931969900356]
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Plaatjes in de tekst",
+			"text": "Je kunt ook een plaatje of meerdere in de tekst kwijt: \n\n![Vreemd stilliggend schip](heenweg-raar-schip.jpg \"inline\") \n ![](shetland-puffin.jpg \"inline\") \n\n Er passen er twee naast elkaar. Als je dat niet doet kun je er beter 1tje buiten de kantlijn zetten. Anders krijg je rare tekstverlopen..",
+			"date": "2015-07-10",
+			"color": "#171bc6",
+			"startTime": "2015-07-10T07:18:31Z",
+			"endTime": "2015-07-10T16:01:39Z",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.2510223388671875,51.91504992420809],[4.248275756835937,51.91166145264695],[4.1809844970703125,51.94553466305084],[4.085540771484375,51.98318857213821],[4.0450286865234375,51.9891087798712],[3.7298583984375004,52.12294980913476],[2.76031494140625,53.34891180394271],[0.19775390625,57.48040333923341],[-1.153564453125,59.55380845543803],[-1.2490081787109375,59.83895049741693],[-1.18927001953125,59.985593412687976],[-1.20574951171875,60.00859805562542],[-1.1624908447265625,60.029185654654505],[-1.1281585693359375,60.15073347299117],[-1.1377716064453125,60.15654283139454],[-1.1418914794921875,60.1541508669647]]
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Lijntjes code",
+			"text": "Je kunt gemakkelijk de stijl van een tekstje wijzigen: \n```\n2210: veel golven  echt heul veel\n2316: Jieter flikkert over tafel\n```\nDat is misschien leuk om het weer en andere meta bij te houden.",
+			"date": "2015-07-11",
+			"color": "#000000",
+			"startTime": "2015-07-11T07:18:31Z",
+			"endTime": "2015-07-11T16:01:39Z",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.6031455993652344,59.538582501502255],[-1.6010856628417969,59.5419763100415],[-1.5967941284179688,59.542672433646004],[-1.5906143188476562,59.5399748745622],[-1.5919876098632812,59.50828415043603],[-1.571044921875,59.136499487320734],[-1.021728515625,58.802361927759456],[-0.9777832031250001,58.309488840677645],[-1.7138671875,57.468589192089325],[-1.7804718017578125,57.49996211862384]]
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Youtube",
+			"text": "Een filmpje is gemakkelijk in te voegen: ![Red Arrows](http://youtu.be/s0uIIxglG28)",
+			"date": "2015-07-12",
+			"startTime": "2015-07-12T07:18:31Z",
+			"endTime": "2015-07-12T16:01:39Z",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.4487361907958984,54.99657349452778],[-1.4461612701416013,54.9969673699149],[-1.442556381225586,54.997459708711595],[-1.4408397674560547,55.00366265994137],[-1.4391231536865234,55.004942514634955],[-1.4257335662841797,55.00863417438293],[-1.4006710052490234,55.012227063564595],[-1.3896846771240234,55.01252235520929],[-1.314239501953125,54.98234215326033],[-1.3414478302001953,54.922505533777404],[-1.3509750366210938,54.920433809029525],[-1.3601160049438477,54.9183496449595],[-1.366875171661377,54.91698069739749],[-1.3674545288085938,54.919447235942755]]
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Gegevens",
+			"text": "<table>\n<tr><td class=\"meta\">Boot</td><td>Equilibre, Spirit 36</td></tr>\n<tr><td class=\"meta\">Gevaren</td><td>1300NM</td></tr>\n<tr><td class=\"meta\">Foto's</td><td>Jieter, Pauli, Joris, Patrick</td></tr>\n</table>\n\n",
+			"date": "",
+			"color": "#000000",
+			"average": 5
+		}
+	},
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Foto's",
+			"text": "![](menukaart.jpg \"inline\")\n![](bijboot.jpg \"inline\")\n![](jieter-slaapt.jpg \"inline\")\n\n\n",
+			"date": "",
+			"color": "#000000",
+			"average": 5
+		}
+	}		]
+,
+	"type": "FeatureCollection"
+}

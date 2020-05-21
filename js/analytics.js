@@ -1,5 +1,5 @@
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-19828019-6']);
+_gaq.push(['_setAccount', 'analyticsID']);
 _gaq.push(['_trackPageview']);
 
 (function() {
