@@ -7,4 +7,4 @@ data/test-story.geojson
 *.docx
 npm-debug.log
 tmp
-.DS_Store
+*.DS_Store
