@@ -1856,7 +1856,12 @@ ul.selector li:hover {
   background-color: #eee;
 }
 #calendar {
-  width: 147px;
+  width: 154px;
+    background-color: rgba(240,240,240,0.4);
+    border-color: gray;
+    border-radius: 2px;
+    padding: 2px;
+
 }
 #calendar .leg,
 #calendar .filler {
@@ -1870,6 +1875,9 @@ ul.selector li:hover {
   padding: 1px 3px;
   cursor: pointer;
   text-align: center;
+
+    border-radius: 3px;
+    margin: 1px;
   -webkit-transition: background-color linear 0.2s;
   -moz-transition: background-color linear 0.2s;
   -o-transition: background-color linear 0.2s;
