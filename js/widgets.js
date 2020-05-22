@@ -62,17 +62,17 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			if (!log.visible && !Saillog.util.isDev()) {
 				return this;
 			}
-			var distSpan
+			var distSpan = ""
 			if (log.distance) {
 				distSpan = '<span class="distance">' + log.distance + 'NM</span>'
 			}
-			var item = $('<li data-id="' + key + '"><p>' + log.title + distSpan + '</p></li>').appendTo(list);
+			var item = $('<li data-id="' + key + '"><p class="indextitle">' + log.title + distSpan + '</p></li>').appendTo(list);
 			if (!log.visible) {
 				item.addClass('hidden');
 			}
 
 			if (log.description) {
-				item.append('<a>' + log.description + '</a>')
+				item.append('<a class="indexdescriptor">' + log.description + '</a>')
 			}
 			// if (log.distance) {
 			// 	item.append('<span class="distance">' + log.distance + 'NM</span>');
