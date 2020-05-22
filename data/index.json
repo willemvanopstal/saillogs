@@ -6,14 +6,10 @@
 	"logs": {
 		"2020-test": {
 			"visible": true,
-			"title": "Test",
+			"title": "Joehoe",
 			"date": "2020-05-21",
-			"distance": 999
-		},
-		"2020-test": {
-			"visible": true,
-			"title": "Test",
-			"date": "2020-05-21"
+			"distance": 35,
+			"description": "Dit is een beschrijving"
 		}
 
 	}

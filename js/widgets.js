@@ -62,14 +62,21 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			if (!log.visible && !Saillog.util.isDev()) {
 				return this;
 			}
-			var item = $('<li data-id="' + key + '">' + log.title + '</li>').appendTo(list);
+			var distSpan
+			if (log.distance) {
+				distSpan = '<span class="distance">' + log.distance + 'NM</span>'
+			}
+			var item = $('<li data-id="' + key + '"><p>' + log.title + distSpan + '</p></li>').appendTo(list);
 			if (!log.visible) {
 				item.addClass('hidden');
 			}
 
-			if (log.distance) {
-				item.append('<span class="distance">' + log.distance + 'NM</span>');
+			if (log.description) {
+				item.append('<a>' + log.description + '</a>')
 			}
+			// if (log.distance) {
+			// 	item.append('<span class="distance">' + log.distance + 'NM</span>');
+			// }
 		});
 
 		if (this.isAuthorized) {
@@ -221,197 +228,197 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 	}
 });
 
-/**
- * Abstract editor functionality
- */
-Saillog.Widget.Editor = Saillog.Widget.extend({
-
-	load: function (data) {
-		var input;
-		for (var key in data) {
-			input = this._container.find('[name=' + key + ']');
-
-			if (!input) {
-				continue;
-			}
-			switch (input.prop('type')) {
-			case 'checkbox':
-				input.prop('checked', data[key]);
-				break;
-			default:
-				input.val(data[key]);
-			}
-		}
-		if (data.text !== undefined && this._textEditor) {
-			this._textEditor.importFile('story-' + data.id, data.text);
-		}
-
-		var widget = this;
-		this._container.find('input').on('keydown', function (event) {
-			switch (event.keyCode) {
-			case Saillog.util.keyCodes.escape:
-				widget.fire('cancel');
-				break;
-			case Saillog.util.keyCodes.enter:
-				widget.fire('save');
-				break;
-			}
-		});
-		return this;
-	},
-
-	values: function () {
-		var values = {};
-		this._container.find('input').each(function () {
-			var input = $(this);
-			var value;
-
-			switch (input.prop('type')) {
-			case 'checkbox':
-				value = input.prop('checked');
-				break;
-			default:
-				value = input.val();
-			}
-			values[input.prop('name')] = value;
-		});
-
-		if (this._textEditor) {
-			values['text'] = this._textEditor.exportFile();
-		}
-
-		return values;
-	},
-
-	_input: function (name, label, type) {
-		var input;
-
-		label = label || name;
-
-		if (typeof type === 'object') {
-			input = $('<select name="' + name + '"></select>');
-			for (var key in type) {
-				input.append($('<option value="' + key + '">' + type[key] + '</option>'));
-			}
-
-			type = 'select';
-		} else {
-			type = type || 'text';
-			input = $('<input type="' + type + '" name="' + name + '" />');
-		}
-		return $('<div class="group group-' + type + '"></div>').append(
-			$('<label for="' + name + '">' + label + '</label>'),
-			input
-		);
-	},
-
-	_initEpicEditor: function (name, label, container) {
-		label = label || name;
-
-		var epicContainer = $('<div id="epiceditor" class="epiceditor"></div>');
-
-		$('<div class="group group-epic"></div>').append(
-			$('<label for="' + name + '">' + label + '</label>'),
-			epicContainer
-		).appendTo(container);
-
-		var widget = this;
-		var resizeFn = function () {
-			epicContainer.width($('#sidebar').width() + 78);
-			if (widget._textEditor) {
-				widget._textEditor.reflow();
-			}
-		};
-
-		var resizeInterval = setInterval(resizeFn, 10);
-		setTimeout(function () {
-			clearInterval(resizeInterval);
-		}, 2000);
-		$(window).resize(resizeFn);
-
-		this._textEditor = new EpicEditor({
-			container: epicContainer[0],
-			basePath: 'js/lib/epiceditor',
-			button: false
-		}).load();
-	},
-
-	_buttons: function () {
-		var widget = this;
-		var buttons = $('<div class="group group-buttons"></div>')
-			.append('<button class="save" data-event="save">Save</button>')
-			.append(' <button class="cancel" data-event="cancel">Cancel</button>');
-
-		buttons.on('click', 'button', function () {
-			var action = $(this).data('event');
-			if (action === 'delete' && !confirm('Are you sure?')) {
-				return;
-			}
-			widget.fire(action);
-		});
-		return buttons;
-	}
-});
-
-Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
-
-	render: function () {
-		this.clear();
-		var container = this._container;
-		var editor = $('<div id="editor"><h1>Edit metadata</h1></div>');
-
-		this._input('title', 'Titel').appendTo(editor);
-		this._input('showTimeline', 'Show timeline', 'checkbox').appendTo(editor);
-		this._input('showCalendar', 'Show calendar', 'checkbox').appendTo(editor);
-		this._input('showTrack', 'Show recorded track (track.geojson)', 'checkbox').appendTo(editor);
-
-		this._buttons().appendTo(editor);
-
-		editor.appendTo(container);
-		return this.load(this._data);
-	}
-});
-
-// TODO: inline editor in Widget.Story?
-Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
-
-	render: function () {
-		this.clear();
-		var container = this._container;
-		var widget = this;
-
-		var editor = $('<div id="editor"><h1>Edit Leg</h1></div>').appendTo(container);
-		this._input('title', 'Titel').appendTo(editor);
-		this._input('date', 'Datum', 'date').appendTo(editor);
-
-		// geometry type.
-		this._input('type', 'Type', {
-			'nothing': 'Just text',
-			'marker': 'Place',
-			'line': 'Leg'
-		})
-			.appendTo(editor)
-			.find('select').on('change', function () {
-				widget.fire('change-type', {
-					geometry: $(this).val()
-				});
-			});
-
-		this._input('color', 'Color', 'color')
-			.appendTo(editor)
-			.find('input').on('change', function () {
-				console.log('color update', $(this).val());
-				widget.fire('update-color', {
-					color: $(this).val()
-				});
-			});
-		this._initEpicEditor('text', 'Verhaal', editor);
-
-		this._buttons().append(
-			'<button data-event="delete" class="delete float-right">Delete</button>'
-		).appendTo(editor);
-
-
-		return this.load(this._data);
-	}
-});
+// /**
+//  * Abstract editor functionality
+//  */
+// Saillog.Widget.Editor = Saillog.Widget.extend({
+//
+// 	load: function (data) {
+// 		var input;
+// 		for (var key in data) {
+// 			input = this._container.find('[name=' + key + ']');
+//
+// 			if (!input) {
+// 				continue;
+// 			}
+// 			switch (input.prop('type')) {
+// 			case 'checkbox':
+// 				input.prop('checked', data[key]);
+// 				break;
+// 			default:
+// 				input.val(data[key]);
+// 			}
+// 		}
+// 		if (data.text !== undefined && this._textEditor) {
+// 			this._textEditor.importFile('story-' + data.id, data.text);
+// 		}
+//
+// 		var widget = this;
+// 		this._container.find('input').on('keydown', function (event) {
+// 			switch (event.keyCode) {
+// 			case Saillog.util.keyCodes.escape:
+// 				widget.fire('cancel');
+// 				break;
+// 			case Saillog.util.keyCodes.enter:
+// 				widget.fire('save');
+// 				break;
+// 			}
+// 		});
+// 		return this;
+// 	},
+//
+// 	values: function () {
+// 		var values = {};
+// 		this._container.find('input').each(function () {
+// 			var input = $(this);
+// 			var value;
+//
+// 			switch (input.prop('type')) {
+// 			case 'checkbox':
+// 				value = input.prop('checked');
+// 				break;
+// 			default:
+// 				value = input.val();
+// 			}
+// 			values[input.prop('name')] = value;
+// 		});
+//
+// 		if (this._textEditor) {
+// 			values['text'] = this._textEditor.exportFile();
+// 		}
+//
+// 		return values;
+// 	},
+//
+// 	_input: function (name, label, type) {
+// 		var input;
+//
+// 		label = label || name;
+//
+// 		if (typeof type === 'object') {
+// 			input = $('<select name="' + name + '"></select>');
+// 			for (var key in type) {
+// 				input.append($('<option value="' + key + '">' + type[key] + '</option>'));
+// 			}
+//
+// 			type = 'select';
+// 		} else {
+// 			type = type || 'text';
+// 			input = $('<input type="' + type + '" name="' + name + '" />');
+// 		}
+// 		return $('<div class="group group-' + type + '"></div>').append(
+// 			$('<label for="' + name + '">' + label + '</label>'),
+// 			input
+// 		);
+// 	},
+//
+// 	_initEpicEditor: function (name, label, container) {
+// 		label = label || name;
+//
+// 		var epicContainer = $('<div id="epiceditor" class="epiceditor"></div>');
+//
+// 		$('<div class="group group-epic"></div>').append(
+// 			$('<label for="' + name + '">' + label + '</label>'),
+// 			epicContainer
+// 		).appendTo(container);
+//
+// 		var widget = this;
+// 		var resizeFn = function () {
+// 			epicContainer.width($('#sidebar').width() + 78);
+// 			if (widget._textEditor) {
+// 				widget._textEditor.reflow();
+// 			}
+// 		};
+//
+// 		var resizeInterval = setInterval(resizeFn, 10);
+// 		setTimeout(function () {
+// 			clearInterval(resizeInterval);
+// 		}, 2000);
+// 		$(window).resize(resizeFn);
+//
+// 		this._textEditor = new EpicEditor({
+// 			container: epicContainer[0],
+// 			basePath: 'js/lib/epiceditor',
+// 			button: false
+// 		}).load();
+// 	},
+//
+// 	_buttons: function () {
+// 		var widget = this;
+// 		var buttons = $('<div class="group group-buttons"></div>')
+// 			.append('<button class="save" data-event="save">Save</button>')
+// 			.append(' <button class="cancel" data-event="cancel">Cancel</button>');
+//
+// 		buttons.on('click', 'button', function () {
+// 			var action = $(this).data('event');
+// 			if (action === 'delete' && !confirm('Are you sure?')) {
+// 				return;
+// 			}
+// 			widget.fire(action);
+// 		});
+// 		return buttons;
+// 	}
+// });
+//
+// Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
+//
+// 	render: function () {
+// 		this.clear();
+// 		var container = this._container;
+// 		var editor = $('<div id="editor"><h1>Edit metadata</h1></div>');
+//
+// 		this._input('title', 'Titel').appendTo(editor);
+// 		this._input('showTimeline', 'Show timeline', 'checkbox').appendTo(editor);
+// 		this._input('showCalendar', 'Show calendar', 'checkbox').appendTo(editor);
+// 		this._input('showTrack', 'Show recorded track (track.geojson)', 'checkbox').appendTo(editor);
+//
+// 		this._buttons().appendTo(editor);
+//
+// 		editor.appendTo(container);
+// 		return this.load(this._data);
+// 	}
+// });
+//
+// // TODO: inline editor in Widget.Story?
+// Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
+//
+// 	render: function () {
+// 		this.clear();
+// 		var container = this._container;
+// 		var widget = this;
+//
+// 		var editor = $('<div id="editor"><h1>Edit Leg</h1></div>').appendTo(container);
+// 		this._input('title', 'Titel').appendTo(editor);
+// 		this._input('date', 'Datum', 'date').appendTo(editor);
+//
+// 		// geometry type.
+// 		this._input('type', 'Type', {
+// 			'nothing': 'Just text',
+// 			'marker': 'Place',
+// 			'line': 'Leg'
+// 		})
+// 			.appendTo(editor)
+// 			.find('select').on('change', function () {
+// 				widget.fire('change-type', {
+// 					geometry: $(this).val()
+// 				});
+// 			});
+//
+// 		this._input('color', 'Color', 'color')
+// 			.appendTo(editor)
+// 			.find('input').on('change', function () {
+// 				console.log('color update', $(this).val());
+// 				widget.fire('update-color', {
+// 					color: $(this).val()
+// 				});
+// 			});
+// 		this._initEpicEditor('text', 'Verhaal', editor);
+//
+// 		this._buttons().append(
+// 			'<button data-event="delete" class="delete float-right">Delete</button>'
+// 		).appendTo(editor);
+//
+//
+// 		return this.load(this._data);
+// 	}
+// });
