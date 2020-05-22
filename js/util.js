@@ -172,12 +172,12 @@ Saillog.util = {
 Saillog.defaultStyles = {
 	leg: {
 		color: '#0000ff',
-		opacity: 0.4,
+		opacity: 0.8,
 		weight: 3
 	},
 	highlight: {
-		opacity: 0.7,
-		weight: 5
+		opacity: 1.0,
+		weight: 6
 	},
 	track: {
 		color: '#000000',

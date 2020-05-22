@@ -30,7 +30,7 @@ Saillog.Map = L.Map.extend({
 		this.layers.base = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 			maxZoom: 19,
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
-		}).addTo(this);
+		});
 
 		this.layers.sat =  L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -41,11 +41,30 @@ Saillog.Map = L.Map.extend({
 			minZoom: 9
 		}).addTo(this);
 
+		this.layers.vesselfinder = L.tileLayer('https://map.vesselfinder.net/bright@2x/{z}/{x}/{y}.png', {
+			attribution: 'Vesselfinder'
+		}).addTo(this);
+
+		this.layers.flytoraster = L.tileLayer('https://viewer.flytomap.com/noaatiles/{z}/{x}/{y}.png', {
+			attribution: 'FlyToMap'
+		});
+
+		this.layers.flytovector = L.tileLayer('https://viewer.flytomap.com/ftm_tiles/{z}/{x}/{y}.png', {
+			attribution: 'FlyToMap'
+		});
+
+
+
+
+
 		L.control.layers({
-			'Kaart': this.layers.base,
-			'Satelliet': this.layers.sat
+			'VF': this.layers.vesselfinder,
+			'Satelliet': this.layers.sat,
+			'Kaart': this.layers.base
 		}, {
-			'Open Seamap': this.layers.openseamap
+			'Open Seamap': this.layers.openseamap,
+			'Navigation Raster': this.layers.flytoraster,
+			'Navigation Vector': this.layers.flytovector
 		}, {
 			position: 'topleft'
 		}).addTo(this);
@@ -91,4 +110,6 @@ Saillog.Map = L.Map.extend({
 		}
 		return this;
 	}
+
+
 });

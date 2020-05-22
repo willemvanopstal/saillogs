@@ -23,6 +23,74 @@ Saillog.App = L.Class.extend({
 			}
 		});
 
+
+		var closeEditor = function() {
+			document.getElementById('delete').style.display='none'
+	        document.getElementById('export').style.display='none'
+
+			console.log(document.getElementsByClassName('leaflet-draw leaflet-control')[0])
+
+			if (document.getElementsByClassName('leaflet-draw leaflet-control')[0]) {
+				document.getElementsByClassName('leaflet-draw leaflet-control')[0].visibility="hidden"
+			}
+		}
+
+		var openEditor = function() {
+
+	        document.getElementById('delete').style.display='block'
+	        document.getElementById('export').style.display='block'
+
+			var featureGroup = L.featureGroup().addTo(map);
+
+            var drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: featureGroup
+                }
+            }).addTo(map);
+
+            map.on('draw:created', function(e) {
+
+                // Each time a feaute is created, it's added to the over arching feature group
+                featureGroup.addLayer(e.layer);
+            });
+
+			// on click, clear all layers
+	        document.getElementById('delete').onclick = function(e) {
+	            featureGroup.clearLayers();
+	        }
+
+
+
+	        document.getElementById('export').onclick = function(e) {
+	            // Extract GeoJson from featureGroup
+	            var data = featureGroup.toGeoJSON();
+				var geomData = data['features'][0]['geometry'];
+				console.log(geomData)
+				var convertedData = '"geometry":' + JSON.stringify(geomData);
+
+				var executeCopy = function() {
+				  var copyhelper = document.createElement("input");
+				  copyhelper.className = 'copyhelper'
+				  document.body.appendChild(copyhelper);
+				  copyhelper.value = convertedData;
+				  copyhelper.select();
+				  document.execCommand("copy");
+				  document.body.removeChild(copyhelper);
+				};
+
+	            // // Stringify the GeoJson
+	            // var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+				//
+	            // // Create export
+	            // document.getElementById('export').setAttribute('href', 'data:' + convertedData);
+	            // document.getElementById('export').setAttribute('download','data.geojson');
+				executeCopy()
+		        featureGroup.clearLayers();
+
+	        }
+	    }
+
+
 		this.storyWidget = new Saillog.Widget.Story(this.sidebar);
 
 		this.calendarControl = new Saillog.Control.Calendar().addTo(map);
@@ -50,8 +118,14 @@ Saillog.App = L.Class.extend({
 			$(window).on('hashchange', function () {
 				var hash = window.location.hash.slice(1);
 
+				closeEditor()
+
 				if (hash === '') {
 					app.showIndex();
+				} else if (hash === 'edit') {
+					app.showIndex()
+					app.sidebar.hide(250);
+					openEditor()
 				} else {
 					app.loadStory(hash, function (success, err) {
 						if (success) {
@@ -126,6 +200,7 @@ Saillog.App = L.Class.extend({
 			this.calendarControl.update(story).show();
 		}
 		if (story.getProperty('baselayer')) {
+			console.log(story.getProperty('baselayer'));
 			this._map.replaceBaseLayer(story.getProperty('baselayer'));
 		}
 	},

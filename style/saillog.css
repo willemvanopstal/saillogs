@@ -1969,26 +1969,31 @@ ul.selector li:hover {
   right: 0;
   bottom: 0;
   width: 20px;
-  padding: 20% 4px 0 4px;
+  padding: 2% 4px 0 4px;
   vertical-align: middle;
-  -webkit-transition: background-color linear 0.5s;
-  -moz-transition: background-color linear 0.5s;
-  -o-transition: background-color linear 0.5s;
-  transition: background-color linear 0.5s;
+  -webkit-transition: background-color linear 0.2s;
+  -moz-transition: background-color linear 0.2s;
+  -o-transition: background-color linear 0.2s;
+  transition: background-color linear 0.2s;
+background-color: rgba(255, 255, 255, 0.15);
 }
 #sidebar-handle i {
-  display: none;
+  display: block;
+  height: 100%;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.6);
+  /* display: none; */
 }
 #sidebar-handle:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
 }
-#sidebar-handle:hover i {
+/* #sidebar-handle:hover i {
   display: block;
   height: 33%;
   vertical-align: middle;
   color: rgba(0, 0, 0, 0.8);
-}
+} */
 #sidebar {
   z-index: 1000;
   position: absolute;
@@ -2003,6 +2008,7 @@ ul.selector li:hover {
   background-color: white;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
   -webkit-transition: width linear 0.5s;
   -moz-transition: width linear 0.5s;
   -o-transition: width linear 0.5s;

@@ -1,0 +1,169 @@
+{
+    "id": "template",
+    "properties": {
+        "title": "Template",
+        "avaerage": 4.5,
+        "showTimeline": "true",
+        "showTrack": "true",
+        "units": "nm",
+        "showCalendar": "true"
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "",
+                "color": "#ffffff",
+                "average": 4.5,
+                "text": "Dit is een simpele inleiding."
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Titel",
+                "date": "2020-12-31",
+                "color": "#E27D60",
+                "average": 4.5,
+                "startTime": "2015-07-08T07",
+                "endTime": "2015-07-08T12",
+                "text": "Hier komt dan de tekst te staan. Je moet het volledig op 1 regel invoeren, anders ontstaat er mogelijk een foutje.\n\nJe kunt natuurlijk wel gewoon enters gebruiken.\n\nJe kunt ook **dikgedrukte** of <em>scheve</em> tekst invoegen."
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        4.118156433105468,
+                        51.82103101804979
+                    ],
+                    [
+                        4.114894866943359,
+                        51.81455800703693
+                    ],
+                    [
+                        4.049320220947266,
+                        51.82368362277163
+                    ],
+                    [
+                        4.0450286865234375,
+                        51.82071269498748
+                    ],
+                    [
+                        4.031124114990234,
+                        51.82856400738683
+                    ],
+                    [
+                        4.036788940429687,
+                        51.833019548947135
+                    ],
+                    [
+                        4.0338706970214835,
+                        51.84914068201114
+                    ],
+                    [
+                        4.021339416503906,
+                        51.85719908388728
+                    ],
+                    [
+                        4.002285003662109,
+                        51.85857735020976
+                    ],
+                    [
+                        3.9736175537109375,
+                        51.84892859931685
+                    ],
+                    [
+                        3.939285278320312,
+                        51.84670167069022
+                    ],
+                    [
+                        3.9027214050292964,
+                        51.85507859171898
+                    ],
+                    [
+                        3.9276123046874996,
+                        51.95569164116401
+                    ],
+                    [
+                        3.9918136596679683,
+                        51.99566238276494
+                    ],
+                    [
+                        4.072151184082031,
+                        51.98593733733687
+                    ],
+                    [
+                        4.129829406738281,
+                        51.97176881859014
+                    ],
+                    [
+                        4.1782379150390625,
+                        51.94913218923517
+                    ],
+                    [
+                        4.221067428588867,
+                        51.931617984993466
+                    ],
+                    [
+                        4.236001968383789,
+                        51.91986746696141
+                    ],
+                    [
+                        4.244327545166016,
+                        51.91596317943724
+                    ],
+                    [
+                        4.245829582214355,
+                        51.915433758378875
+                    ],
+                    [
+                        4.2484259605407715,
+                        51.9174058201392
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Nieuwe titel",
+                "date": "2020-12-30",
+                "color": "#85DCBA",
+                "average": 4.5,
+                "startTime": "2015-07-09T07",
+                "endTime": "2015-07-10T12",
+                "text": "Hier komt dan de tekst te staan. Je moet het volledig op 1 regel invoeren, anders ontstaat er mogelijk een foutje.\n\nJe kunt natuurlijk wel gewoon enters gebruiken.\n\nJe kunt ook **dikgedrukte** of <em>scheve</em> tekst invoegen."
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.6090087890625004,
+                        51.88327296443745
+                    ],
+                    [
+                        2.427978515625,
+                        51.7406361640977
+                    ],
+                    [
+                        2.08740234375,
+                        51.248163159055906
+                    ],
+                    [
+                        2.0709228515625,
+                        51.01375465718821
+                    ],
+                    [
+                        3.021240234375,
+                        51.07591977545679
+                    ],
+                    [
+                        3.3673095703125,
+                        51.45742980658965
+                    ]
+                ]
+            }
+        }
+    ],
+    "type": "FeatureCollection"
+}

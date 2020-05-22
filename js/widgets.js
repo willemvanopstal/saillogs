@@ -219,7 +219,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		case 'LineString':
 			if (color) {
 				var rgb = Saillog.util.hexToRgb(color);
-				element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
+				element.css('border-left', '4px solid ' + rgb.toRgba(0.6));
 			}
 			break;
 		}
