@@ -310,6 +310,7 @@
 	}
 .leaflet-control-layers label {
 	display: block;
+	font-size:90%;
 	}
 .leaflet-control-layers-separator {
 	height: 0;

@@ -60,11 +60,11 @@ Saillog.Map = L.Map.extend({
 		L.control.layers({
 			'VF': this.layers.vesselfinder,
 			'Satelliet': this.layers.sat,
-			'Kaart': this.layers.base
-		}, {
-			'Open Seamap': this.layers.openseamap,
+			'Kaart': this.layers.base,
 			'Navigation Raster': this.layers.flytoraster,
 			'Navigation Vector': this.layers.flytovector
+		}, {
+			'Open Seamap': this.layers.openseamap
 		}, {
 			position: 'topleft'
 		}).addTo(this);

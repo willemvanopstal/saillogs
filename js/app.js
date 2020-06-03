@@ -153,9 +153,9 @@ Saillog.App = L.Class.extend({
 			.insertAfter(this.sidebar)
 			.on('click', function () {
 				if (app.sidebar.is(':visible')) {
-					app.sidebar.hide(500);
+					app.sidebar.hide(0);
 				} else {
-					app.sidebar.show(500);
+					app.sidebar.show(0);
 				}
 				$(this).children('i')
 					.toggleClass('fa-arrow-circle-right fa-arrow-circle-left');
