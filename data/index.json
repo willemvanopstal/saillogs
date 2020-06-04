@@ -4,31 +4,24 @@
 	"title": "Reisverhalen",
 	"text": "Een collectie reisverhalen...",
 	"logs": {
-		"2020-test-1": {
-			"visible": true,
-			"title": "Joehoe",
-			"date": "2020-05-21",
-			"distance": 35,
-			"description": "Dit is een beschrijving"
-		},
 		"2020-test": {
 			"visible": true,
-			"title": "Nieuwe test",
+			"title": "Functionaliteiten 2020",
 			"date": "2020-05-21",
 			"distance": 35,
-			"description": "Dit is een andere, en langere beschrijving behorende bij dit nieuwe kopje."
-		},
-		"2020-test-3": {
-			"visible": true,
-			"title": "Nieuwe test",
-			"date": "2020-05-21",
-			"distance": 35,
-			"description": ""
+			"description": "Deze sectie biedt een inkijkje in de meeste functionaliteiten."
 		},
 		"template": {
 			"visible": true,
-			"title": "Nieuwe test",
-			"date": "2020-05-21"
+			"title": "Template test",
+			"date": "2020-05-21",
+			"description": "Dit is een oefensectie. Vooral in gebruik voor de Python template parser."
+		},
+		"editor": {
+			"visible": true,
+			"title": "Editor",
+			"date": "2020-05-21",
+			"description": "Deze log kun je gebruiken om een verhaal op te bouwen."
 		}
 
 	}

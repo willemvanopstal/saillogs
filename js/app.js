@@ -118,18 +118,21 @@ Saillog.App = L.Class.extend({
 			$(window).on('hashchange', function () {
 				var hash = window.location.hash.slice(1);
 
-				closeEditor()
+				// closeEditor()
 
 				if (hash === '') {
 					app.showIndex();
-				} else if (hash === 'edit') {
-					app.showIndex()
-					app.sidebar.hide(250);
-					openEditor()
+				// } else if (hash === 'edit') {
+				// 	app.showIndex()
+				// 	app.sidebar.hide(250);
+				// 	openEditor()
 				} else {
 					app.loadStory(hash, function (success, err) {
 						if (success) {
 							app.showStory();
+							if (hash === 'editor') {
+								openEditor()
+							}
 						} else {
 							console.log('Story ' + hash + ' could not be loaded: ' + err);
 							// TODO: notify user.
