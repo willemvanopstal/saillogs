@@ -90,6 +90,29 @@ Saillog.App = L.Class.extend({
 	        }
 	    }
 
+		var closeEditor = function() {
+			document.getElementById('delete').style.display='none'
+	        document.getElementById('export').style.display='none'
+
+			console.log(document.getElementsByClassName('leaflet-draw leaflet-control')[0])
+
+			if (document.getElementsByClassName('leaflet-draw leaflet-control')[0]) {
+				document.getElementsByClassName('leaflet-draw leaflet-control')[0].visibility="hidden"
+			}
+		}
+
+		var initEditor = function() {
+			console.log('init story editor')
+
+			var elements = $("<div/>")   // creates a div element
+                 .attr("id", "editorElements")  // adds the id
+                 .addClass("leg")   // add a class
+                 .html("<h3>Elements</h3><div class='elBtn'>Link</div><div class='elBtn'>Image</div><div class='elBtn'>Youtube</div><div class='elBtn'>Abbr</div><div class='elBtn'>Code</div><div class='elBtn'>Bold</div><div class='elBtn'>Oblique</div>");
+
+
+			$("#sidebar").append(elements);
+
+		}
 
 		this.storyWidget = new Saillog.Widget.Story(this.sidebar);
 
@@ -132,6 +155,7 @@ Saillog.App = L.Class.extend({
 							app.showStory();
 							if (hash === 'editor') {
 								openEditor()
+								initEditor()
 							}
 						} else {
 							console.log('Story ' + hash + ' could not be loaded: ' + err);
@@ -247,6 +271,12 @@ Saillog.App = L.Class.extend({
 
 	_scrollTo: function (id, duration) {
 		duration = duration || 500;
+
+		console.log('scroll to: ', id)
+		console.log($('#leg-story-' + id))
+
+		$('#sidebar').focus()
+		// $('#leg-story-' + id).animate({ scrollTop: -20 }, duration);
 
 		$.scrollTo('#leg-story-' + id, {
 			duration: duration,
