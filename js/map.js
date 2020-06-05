@@ -4,8 +4,8 @@ Saillog.Map = L.Map.extend({
 	options: {
 		zoomControl: false,
 		attributionControl: false,
-		center: [52, 3],
-		zoom: 7
+		center: [52.6, 4.5],
+		zoom: 9
 	},
 	initialize: function (app) {
 		this.app = app;

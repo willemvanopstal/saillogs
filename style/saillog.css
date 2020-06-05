@@ -2211,7 +2211,7 @@ background-color: rgba(255, 255, 255, 0.15);
   margin-bottom: 15px;
 }
 #sidebar #editor .type.marker {
-  background-image: url('../js/lib/Leaflet/images/marker-icon.png');
+  background-image: url('../js/lib/Leaflet/images/marker-icon-grey.png');
   background-position: 13px 4px;
   background-repeat: no-repeat;
 }
@@ -2402,4 +2402,24 @@ font-size: 90%;
     flex-direction:row;
     margin-top: 2px;
     margin-bottom: 2px;
+}
+
+#delete, #export {
+    position: fixed;
+    top:55px;
+    left:50px;
+    z-index:100;
+    background:white;
+    color:black;
+    padding:6px;
+    border-radius:5px;
+    font-family: 'Avenir-Light';
+    cursor: pointer;
+    font-size:12px;
+    text-decoration:none;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+
+}
+#export {
+    top:90px;
 }

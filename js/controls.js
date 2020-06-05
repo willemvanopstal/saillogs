@@ -119,7 +119,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	options: {
 		position: 'bottomleft',
 		containerId: 'timeline',
-		speed: 5,
+		speed: 4.5,
 		opacity: 0.6
 	},
 

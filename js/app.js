@@ -210,7 +210,6 @@ Saillog.App = L.Class.extend({
 
 		if (window.location.hash.slice(1) !== 'editor') {
 			this._attachLegActions(this.storyWidget);
-
 		};
 
 		this.storyWidget.on({
