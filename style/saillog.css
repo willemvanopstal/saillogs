@@ -2364,3 +2364,42 @@ font-size: 90%;
     margin-top:5px;
     font-family: 'Avenir-Medium';
 }
+
+.editor-input {
+    flex: 1;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    font-family: 'Merriweather-Light';
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.editor-input-leg {
+    flex: 1;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    font-family: 'Merriweather-Light';
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+    min-height: 23px;
+}
+
+.editor-label {
+    font-size: 90%;
+}
+
+.editor-group {
+    display:flex;
+    flex-direction:row;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.editor-group-leg {
+    display:flex;
+    flex-direction:row;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

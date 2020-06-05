@@ -1,8 +1,8 @@
 {
 	"id": "empty-editor",
 	"properties": {
-		"title": "empty editor",
-		"average": 5,
+		"title": "Empty template",
+		"average": 4.5,
 		"showTimeline": true,
 		"showTrack": true,
 		"units": "nm",

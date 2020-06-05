@@ -1,7 +1,7 @@
 {
     "id": "template",
     "properties": {
-        "title": "Editor",
+        "title": "",
         "average": 4.5,
         "showTimeline": false,
         "showTrack": false,
@@ -15,7 +15,7 @@
                 "title": "",
                 "color": "#ffffff",
                 "average": 4.5,
-                "text": "Dit is een simpele inleiding."
+                "text": ""
             }
         }
     ],
