@@ -120,10 +120,10 @@ Saillog.App = L.Class.extend({
 				 .addClass("leg")   // add a class
 				 .html(`<h3></h3>
 					 <div class="editor-group">
-						 <label for="template-id" class="editor-label">template id:</label>
-						 <input type="text" id="template-id" class="editor-input" value="empty-editor"/>
+						 <label for="template-id" class="editor-label" style="font-size:xx-small;">template id:</label>
+						 <input type="text" id="template-id" class="editor-input" value="empty-editor" style="font-size:xx-small;"/>
 					 </div>
-					 <div class='elBtn' onclick="saillog.loadTemplate()">Load template</div>
+					 <div class='elBtn' onclick="saillog.loadTemplate(true)">Load template</div>
 					 <div class='elBtn' onclick="saillog.appendLeg({})">Add new leg</div>
 					 <div class='elBtn' onclick="saillog.exportStory()" style="margin-bottom:10px;">Export story</div>`);
 			$("#sidebar").append(editorFunc);
@@ -197,7 +197,7 @@ Saillog.App = L.Class.extend({
 		   $("#sidebar").append(storyProperties);
 
 		   // app.appendLeg({})
-		   app.loadTemplate()
+		   app.loadTemplate(false)
 
 		}
 
@@ -372,8 +372,22 @@ Saillog.App = L.Class.extend({
 		}
 	},
 
-	loadTemplate: function() {
+	loadTemplate: function(cnf) {
+
 		var templateId = $('#template-id').val()
+
+		console.log(cnf)
+
+		if (cnf === true) {
+			var r = confirm("Do you want to load " + templateId + " as a template? You will lose all progress");
+			if (r == true) {
+			  console.log("loading template");
+			} else {
+			  console.log("stop loading")
+			  return;
+			}
+		}
+
 
 		$.getJSON('data/' + templateId + '.geojson', function(json){
 			templateLoaded(json)
@@ -469,8 +483,13 @@ Saillog.App = L.Class.extend({
 		obj.features = features
 
 		console.log(obj)
-		// var inp = JSON.stringify(obj, undefined, 4)
+		var inp = JSON.stringify(obj, undefined, 4)
 		// $('#leg-text-4').val(inp)
+
+
+	  	var new_page = window.open();
+	  	new_page.document.write('<pre>'+inp+'</pre>');
+
 
 		var saveData = (function () {
 		    var a = document.createElement("a");
