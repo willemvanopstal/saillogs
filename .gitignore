@@ -8,3 +8,5 @@ data/test-story.geojson
 npm-debug.log
 tmp
 *.DS_Store
+*.HEIC
+*.heic

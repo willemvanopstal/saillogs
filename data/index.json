@@ -8,20 +8,8 @@
 			"visible": true,
 			"title": "Londen 2019",
 			"date": "2020-07-20",
+			"distance": 500,
 			"description": "Zomervakantie naar St. Katharine's Dock, hartje Londen."
-		},
-		"2020-test": {
-			"visible": true,
-			"title": "Functionaliteiten 2020",
-			"date": "2020-05-21",
-			"distance": 35,
-			"description": "Deze sectie biedt een inkijkje in de meeste functionaliteiten."
-		},
-		"template": {
-			"visible": true,
-			"title": "Template test",
-			"date": "2020-05-21",
-			"description": "Dit is een oefensectie. Vooral in gebruik voor de Python template parser."
 		},
 		"editor": {
 			"visible": true,
