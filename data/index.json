@@ -4,6 +4,12 @@
 	"title": "Reisverhalen",
 	"text": "Een collectie reisverhalen...",
 	"logs": {
+		"2019-londen": {
+			"visible": true,
+			"title": "Londen 2019",
+			"date": "2020-07-20",
+			"description": "Zomervakantie naar St. Katharine's Dock, hartje Londen."
+		},
 		"2020-test": {
 			"visible": true,
 			"title": "Functionaliteiten 2020",
@@ -20,8 +26,8 @@
 		"editor": {
 			"visible": true,
 			"title": "Editor",
-			"date": "2020-05-21",
-			"description": "Deze log kun je gebruiken om een verhaal op te bouwen."
+			"date": "",
+			"description": ""
 		}
 
 	}

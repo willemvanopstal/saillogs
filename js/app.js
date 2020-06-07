@@ -142,13 +142,16 @@ Saillog.App = L.Class.extend({
 					 <div class='elBtn' onclick="saillog.copyTC('table')">Table</div>
 					 <div class='elBtn' onclick='saillog.copyTC("**tekst**")'>Bold</div>
 					 <div class='elBtn' onclick='saillog.copyTC("<em>tekst</em>")'>Oblique</div>
-					 <div class='elBtn' onclick='saillog.copyTC("#000000")' style="color: red;">Red</div>
-					 <div class='elBtn' onclick='saillog.copyTC("#000000")' style="color: green;">Green</div>
-					 <div class='elBtn' onclick='saillog.copyTC("#000000")' style="color: blue;">Blue</div>
-					 <div class='elBtn' onclick='saillog.copyTC("#000000")' style="color: gray;">Gray</div>
+					 <div class='elBtn' onclick='saillog.copyTC("#A41623")' style="color: #A41623;">Red</div>
+					 <div class='elBtn' onclick='saillog.copyTC("#230007")' style="color: #230007;">Sienna</div>
+                     <div class='elBtn' onclick='saillog.copyTC("#253C78")' style="color: #253C78;">Blue</div>
+                     <div class='elBtn' onclick='saillog.copyTC("#F6AE2d")' style="color: #F6AE2D;">Yellow</div>
+                     <div class='elBtn' onclick='saillog.copyTC("#566E3D")' style="color: #566E3D;">Green</div>
+					 <div class='elBtn' onclick='saillog.copyTC("#E4572E")' style="color: #E4572E;">Orange</div>
 					 <div class='elBtn' onclick='saillog.copyTC(new Date().toISOString().slice(0, 10))'>Date</div>
 					 <div class='elBtn' onclick='saillog.copyTC(new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 16)+":00")' style="margin-bottom:10px;">Now</div>`);
 			$("#sidebar").append(elements);
+
 
 			var storyProperties = $("<div/>")
 				.attr("id", "storyProperties")  // adds the id
@@ -422,8 +425,11 @@ Saillog.App = L.Class.extend({
 	},
 
 	changeColor: function(obj) {
+        console.log(this)
 		var newColor = obj.value
+        console.log(newColor)
 		var obj_id = obj.id.split('-').pop()
+        console.log('changeColor: ', newColor, obj_id)
 		$('#leg-color-example-' + obj_id).css('background-color', newColor)
 	},
 
@@ -460,7 +466,7 @@ Saillog.App = L.Class.extend({
 			var fId = this.id.split('-').pop()
 
 			props.title = $('#leg-title-' + fId).val()
-			props.text = $('#leg-text-' + fId).val().replace(/\\n/g, '\n')
+			props.text = $('#leg-text-' + fId).val().replace(/\\n/g, '\n').replace(/\\\"inline\\\"/g, '\"inline\"')
 			props.date = $('#leg-date-' + fId).val()
 			props.color = $('#leg-color-' + fId).val()
 			props.average = parseFloat($('#leg-average-' + fId).val())
@@ -595,7 +601,7 @@ Saillog.App = L.Class.extend({
 										</div>
 										<div class="editor-group">
 											<label for="leg-color-${fID}" class="editor-label">Color:</label>
-											<input type="text" id="leg-color-${fID}" class="editor-input" onfocus="saillog.addFocus()" onchange="saillog.changeColor(this)"/>
+											<input type="text" id="leg-color-${fID}" class="editor-input" onfocus="saillog.addFocus()" onchange="saillog.changeColor(this)" onpaste="saillog.changeColor(this)"/>
 											<input type="text" class="editor-input" id="leg-color-example-${fID}" style="background-color: ${fColor};margin-left:2px;max-width:12px;"/>
 										</div>
 										<div class="editor-group">
