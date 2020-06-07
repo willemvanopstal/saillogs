@@ -11,6 +11,13 @@
 			"distance": 500,
 			"description": "Zomervakantie naar St. Katharine's Dock, hartje Londen."
 		},
+		"2018-kanaal-eilanden": {
+			"visible": true,
+			"title": "Kanaaleilanden 2018",
+			"date": "2020-07-20",
+			"distance": 0,
+			"description": "Zomervakantie naar de Kanaaleilanden."
+		},
 		"editor": {
 			"visible": true,
 			"title": "Editor",

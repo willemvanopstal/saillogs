@@ -126,7 +126,16 @@ Saillog.App = L.Class.extend({
 					 <div class='elBtn' onclick="saillog.loadTemplate(true)">Load template</div>
 					 <div class='elBtn' onclick="saillog.appendLeg({})">Add new leg</div>
 					 <div class='elBtn' onclick="saillog.exportStory()" style="margin-bottom:10px;">Export story</div>`);
-			$("#sidebar").append(editorFunc);
+			$("#sidebar").append(editorFunc.clone());
+
+            var editorFuncSide = $("<div/>")   // creates a div element
+				 .attr("id", "editorFunctionsSide")  // adds the id
+				 .addClass("leg")   // add a class
+				 .html(`<h3></h3>
+					 <div class='elBtn' onclick="saillog.appendLeg({})">Add new leg</div>
+					 `);
+            $("#editor_controls").append(editorFuncSide.clone());
+
 
 			var elements = $("<div/>")   // creates a div element
                  .attr("id", "editorElements")  // adds the id
@@ -150,7 +159,11 @@ Saillog.App = L.Class.extend({
 					 <div class='elBtn' onclick='saillog.copyTC("#E4572E")' style="color: #E4572E;">Orange</div>
 					 <div class='elBtn' onclick='saillog.copyTC(new Date().toISOString().slice(0, 10))'>Date</div>
 					 <div class='elBtn' onclick='saillog.copyTC(new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 16)+":00")' style="margin-bottom:10px;">Now</div>`);
-			$("#sidebar").append(elements);
+
+            $("#sidebar").append(elements.clone());
+            $("#editor_controls").append(elements.clone());
+
+            document.getElementById('editor_controls').style.display='block'
 
 
 			var storyProperties = $("<div/>")
@@ -430,7 +443,9 @@ Saillog.App = L.Class.extend({
         console.log(newColor)
 		var obj_id = obj.id.split('-').pop()
         console.log('changeColor: ', newColor, obj_id)
-		$('#leg-color-example-' + obj_id).css('background-color', newColor)
+        $('#leg-color-example-' + obj_id).css('background-color', newColor)
+        var borderStyle = '4px solid ' + newColor
+        $('#legEntry-' + obj_id).css('border-left', borderStyle)
 	},
 
 	addFocus: function(obj) {
@@ -466,7 +481,8 @@ Saillog.App = L.Class.extend({
 			var fId = this.id.split('-').pop()
 
 			props.title = $('#leg-title-' + fId).val()
-			props.text = $('#leg-text-' + fId).val().replace(/\\n/g, '\n').replace(/\\\"inline\\\"/g, '\"inline\"')
+            // props.text = $('#leg-text-' + fId).val().replace(/\\n/g, '\n').replace(/\\\"inline\\\"/g, '\"inline\"')
+            props.text = $('#leg-text-' + fId).val().replace(/\\n/g, '\n').replace(/\\\"/g, '\"')
 			props.date = $('#leg-date-' + fId).val()
 			props.color = $('#leg-color-' + fId).val()
 			props.average = parseFloat($('#leg-average-' + fId).val())
@@ -627,6 +643,8 @@ Saillog.App = L.Class.extend({
 		   $('#leg-color-' + fID).val(fColor)
 		   $('#leg-average-' + fID).val(fAverage)
 		   $('#leg-geom-' + fID).val(fGeom)
+           var borderStyle = '4px solid ' + fColor;
+           $('#legEntry-' + fID).css('border-left', borderStyle)
 
 
 		};
