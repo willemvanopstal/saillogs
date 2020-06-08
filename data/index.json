@@ -18,6 +18,13 @@
 			"distance": 0,
 			"description": "Zomervakantie naar de Kanaaleilanden."
 		},
+		"denemarken": {
+			"visible": true,
+			"title": "Denemarken",
+			"date": "2020-07-20",
+			"distance": 0,
+			"description": "Zomervakantie naar Denemarken."
+		},
 		"editor": {
 			"visible": true,
 			"title": "Editor",
