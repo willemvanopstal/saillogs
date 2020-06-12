@@ -70,6 +70,7 @@ Saillog.Story = Saillog.Model.extend({
 	},
 
 	addLeg: function (leg) {
+		console.log('story/Story/addLeg')
 		if (!(leg instanceof Saillog.Leg)) {
 			leg = new Saillog.Leg(leg);
 		}

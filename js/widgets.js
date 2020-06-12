@@ -47,6 +47,8 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 		var container = this._container;
 		var index = this._data;
 
+		console.log('widgets/Widget.Index');
+
 		$('<h1></h1>')
 			.html(index.title)
 			.appendTo(container);
@@ -57,6 +59,8 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 				.appendTo(container);
 		}
 
+
+
 		var list = $('<ul class="selector"></ul>').appendTo(container);
 		$.each(index.logs, function (key, log) {
 			if (!log.visible && !Saillog.util.isDev()) {
@@ -66,7 +70,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			if (log.distance) {
 				distSpan = '<span class="distance">' + log.distance + 'NM</span>'
 			}
-			var item = $('<li data-id="' + key + '"><p class="indextitle">' + log.title + distSpan + '</p></li>').appendTo(list);
+			var item = $('<li data-id="' + key + '" onmouseenter="saillog.hoverIndexIn(this)" onmouseleave="saillog.hoverIndexOut(this)"><p class="indextitle">' + log.title + distSpan + '</p></li>').appendTo(list);
 			if (!log.visible) {
 				item.addClass('hidden');
 			}
@@ -77,6 +81,63 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			// if (log.distance) {
 			// 	item.append('<span class="distance">' + log.distance + 'NM</span>');
 			// }
+			if (log.geom) {
+				// here, stories are added to the index page...
+				// probably the location to add geom to leaflet
+				console.log('has geometry');
+				// console.log(log);
+				console.log(log.geom);
+
+				$.getJSON('data/' + key + '.geojson', function(json){
+					indexStory(json)
+				});
+			};
+
+			// var hoverIndex = function (element) {
+			// 	console.log(element)
+			// 	console.log('hovering index entry!')
+			// 	saillog.indexLayers[storyId].setStyle({
+			// 		"color": '#000000',
+			// 		"weight": 1,
+			// 		"opacity": 0.9
+			// 	})
+			// };
+
+			var indexStory = function (json) {
+				console.log('this is the actual story')
+				// L.geoJson(json.geom).addTo(saillog._map);
+				console.log(json)
+
+				var multiGeom = []
+
+				$.each(json.features, function(index, feature) {
+				    if (feature.geometry && feature.geometry.type === 'LineString') {
+						// console.log('im linestring')
+						// console.log(feature.geometry)
+						multiGeom.push(feature.geometry)
+					};
+				});
+
+				console.log(key, multiGeom)
+
+				var myStyle = {
+					"color": '#000000',
+	 		   		"weight": 1,
+	 		   		"dashArray": [4, 4],
+					"opacity": 0.6
+				};
+
+				// L.geoJson(multiGeom, {
+				//     style: myStyle
+				// }).addTo(saillog._map);
+
+				saillog.indexLayers[key] = L.geoJson(multiGeom, {style: myStyle}).addTo(saillog._map);
+				// saillog.indexLayers[key].addData(mutliGeom);
+
+				console.log('indexLayers:', saillog.indexLayers)
+
+			};
+
 		});
 
 		if (this.isAuthorized) {
@@ -102,6 +163,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 Saillog.Widget.Story = Saillog.Widget.extend({
 
 	render: function () {
+		console.log('widgets/Widget.Story');
 		var widget = this.clear();
 		var container = this._container;
 		var story = this._data;

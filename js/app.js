@@ -7,6 +7,7 @@ Saillog.App = L.Class.extend({
 	initialize: function () {
 		var app = this;
 		this.focused = 'none'
+		this.indexLayers = {}
 		this.sidebar = $('#sidebar');
 
 		var map = this._map = new Saillog.Map(this);
@@ -297,6 +298,31 @@ Saillog.App = L.Class.extend({
 			});
 	},
 
+
+	hoverIndexIn: function (element) {
+		console.log(element)
+		var storyId = $(element).attr('data-id')
+		console.log('hovering index entry!')
+		saillog.indexLayers[storyId].setStyle({
+			"color": '#000000',
+			"weight": 2,
+			"dashArray": [0],
+			"opacity": 0.9
+		})
+	},
+
+	hoverIndexOut: function (element) {
+		console.log(element)
+		var storyId = $(element).attr('data-id')
+		console.log('hovering index entry!')
+		saillog.indexLayers[storyId].setStyle({
+			"color": '#000000',
+			"weight": 1,
+			"dashArray": [4, 4],
+			"opacity": 0.6
+		})
+	},
+
 	insertAtCaret: function(text) {
 		var areaId = this.focused.id
 		console.log(areaId)
@@ -349,7 +375,7 @@ Saillog.App = L.Class.extend({
 	copyTC: function(text) {
 
 		if (text==='table') {
-			text = `<table>\\n<tr><td class=\"meta\">Boot</td><td>Equilibre, Spirit 36</td></tr>\\n<tr><td class=\"meta\">Gevaren</td><td>1300NM</td></tr>\\n</table>`.replace(/"/g, '\\"')
+			text = `<table>\\n<tr><td class=\"meta\">Boot</td><td>Peerd Parmant, Hurley 800</td></tr>\\n<tr><td class=\"meta\">Gevaren</td><td>10NM</td></tr>\\n</table>`.replace(/"/g, '\\"')
 		}
 		if (text==='inline') {
 			text = `![tekst](afbeelding.jpg "inline")`.replace(/"/g, '\\"')

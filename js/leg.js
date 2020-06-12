@@ -10,10 +10,12 @@ Saillog.Leg = Saillog.Model.extend({
 	},
 
 	initialize: function (json) {
+		console.log('leg/Leg/initialize');
 		json = json || {
 			properties: {}
 		};
 		this._originalJson = json;
+		console.log(json);
 
 		Saillog.Model.prototype.initialize.call(this, json.properties);
 
@@ -36,6 +38,7 @@ Saillog.Leg = Saillog.Model.extend({
 	},
 
 	setLayer: function (layer) {
+		console.log('leg/Leg/setLayer');
 		var newLayer = this._makeLayer(layer.toGeoJSON());
 		newLayer['_leaflet_id'] = L.stamp(layer);
 
@@ -45,6 +48,7 @@ Saillog.Leg = Saillog.Model.extend({
 	},
 
 	highlight: function () {
+		console.log('leg/Leg/highlight')
 		if (this.layer && this.layer.setStyle) {
 			this.layer.setStyle(Saillog.defaultStyles.highlight);
 			if (this.layer.bringToFront) {
@@ -130,12 +134,15 @@ Saillog.Leg = Saillog.Model.extend({
 		if (leg.geometry) {
 			var self = this;
 
+			console.log('makelayer')
+
 			return L.geoJson(leg, {
 				style: function () {
 					return self._style();
 				}
 			}).getLayers()[0];
 		}
+
 	},
 
 	_style: function () {
