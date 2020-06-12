@@ -300,27 +300,25 @@ Saillog.App = L.Class.extend({
 
 
 	hoverIndexIn: function (element) {
-		console.log(element)
 		var storyId = $(element).attr('data-id')
-		console.log('hovering index entry!')
-		saillog.indexLayers[storyId].setStyle({
-			"color": '#000000',
-			"weight": 2,
-			"dashArray": [0],
-			"opacity": 0.9
-		})
+		saillog.indexLayers[storyId].setStyle(Saillog.defaultStyles.indexHover)
+		saillog.indexLayers[storyId].bringToFront()
+
+		$.each(saillog.indexLayers, function( key, layer ) {
+			if ( key !== storyId) {
+				layer.setStyle(Saillog.defaultStyles.indexNot);
+			}
+		});
+
 	},
 
 	hoverIndexOut: function (element) {
-		console.log(element)
-		var storyId = $(element).attr('data-id')
-		console.log('hovering index entry!')
-		saillog.indexLayers[storyId].setStyle({
-			"color": '#000000',
-			"weight": 1,
-			"dashArray": [4, 4],
-			"opacity": 0.6
-		})
+		// var storyId = $(element).attr('data-id')
+		// saillog.indexLayers[storyId].setStyle(Saillog.defaultStyles.index)
+
+		$.each(saillog.indexLayers, function( key, layer ) {
+			layer.setStyle(Saillog.defaultStyles.index);
+		});
 	},
 
 	insertAtCaret: function(text) {
@@ -679,6 +677,10 @@ Saillog.App = L.Class.extend({
 	showIndex: function () {
 		Saillog.util.imagePrefix = 'data/';
 
+		$.each(saillog.indexLayers, function( key, layer ) {
+			layer.setStyle(Saillog.defaultStyles.index);
+		});
+
 		this._map
 			.setView(this._index.center, this._index.zoom)
 			.maxZoom(14);
@@ -699,6 +701,12 @@ Saillog.App = L.Class.extend({
 
 	showStory: function () {
 		var story = this._attachLegActions(this._story);
+
+		console.log('showStory')
+		$.each(saillog.indexLayers, function( key, layer ) {
+			layer.setStyle(Saillog.defaultStyles.indexHidden);
+			saillog._map.removeLayer(layer)
+		});
 
 		Saillog.util.imagePrefix = 'data/' + story.id + '/';
 

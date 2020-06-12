@@ -183,5 +183,29 @@ Saillog.defaultStyles = {
 		color: '#000000',
 		weight: 1,
 		dashArray: [4, 4]
-	}
+	},
+	index: {
+		color: '#000000',
+		weight: 1,
+		dashArray: [4, 4],
+        opacity: 0.6
+	},
+	indexHover: {
+		color: '#E4572E',
+		weight: 3,
+		dashArray: [0],
+        opacity: 0.8
+	},
+    indexNot: {
+        color: '#000000',
+		weight: 1,
+		dashArray: [4, 4],
+        opacity: 0.2
+    },
+    indexHidden: {
+        color: '#ffffff',
+		weight: 1,
+		dashArray: [4, 4],
+        opacity: 0.0
+    }
 };

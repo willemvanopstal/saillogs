@@ -46,6 +46,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 		var widget = this.clear();
 		var container = this._container;
 		var index = this._data;
+		saillog.indexLayers = {}
 
 		console.log('widgets/Widget.Index');
 
@@ -93,20 +94,10 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 				});
 			};
 
-			// var hoverIndex = function (element) {
-			// 	console.log(element)
-			// 	console.log('hovering index entry!')
-			// 	saillog.indexLayers[storyId].setStyle({
-			// 		"color": '#000000',
-			// 		"weight": 1,
-			// 		"opacity": 0.9
-			// 	})
-			// };
-
 			var indexStory = function (json) {
-				console.log('this is the actual story')
+				// console.log('this is the actual story')
 				// L.geoJson(json.geom).addTo(saillog._map);
-				console.log(json)
+				// console.log(json)
 
 				var multiGeom = []
 
@@ -118,23 +109,17 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 					};
 				});
 
-				console.log(key, multiGeom)
-
-				var myStyle = {
-					"color": '#000000',
-	 		   		"weight": 1,
-	 		   		"dashArray": [4, 4],
-					"opacity": 0.6
-				};
+				// console.log(key, multiGeom)
 
 				// L.geoJson(multiGeom, {
 				//     style: myStyle
 				// }).addTo(saillog._map);
 
-				saillog.indexLayers[key] = L.geoJson(multiGeom, {style: myStyle}).addTo(saillog._map);
+				saillog.indexLayers[key] = L.geoJson(multiGeom).addTo(saillog._map);
+				saillog.indexLayers[key].setStyle(Saillog.defaultStyles.index)
 				// saillog.indexLayers[key].addData(mutliGeom);
 
-				console.log('indexLayers:', saillog.indexLayers)
+				// console.log('indexLayers:', saillog.indexLayers)
 
 			};
 
