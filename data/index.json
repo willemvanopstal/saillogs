@@ -4,20 +4,20 @@
 	"title": "Reisverhalen",
 	"text": "Een collectie reisverhalen...",
 	"logs": {
-		"2018-winterstalling": {
-			"visible": true,
-			"title": "Winterstalling 2018-2019",
-			"date": "2018-09-20",
-			"distance": 0,
-			"description": "",
-			"geom": true
-		},
 		"2019-londen": {
 			"visible": true,
 			"title": "Londen 2019",
 			"date": "2020-07-20",
 			"distance": 500,
 			"description": "Zomervakantie naar St. Katharine's Dock, hartje Londen.",
+			"geom": true
+		},
+		"2018-winterstalling": {
+			"visible": true,
+			"title": "Winterstalling 2018-2019",
+			"date": "2018-09-20",
+			"distance": 0,
+			"description": "",
 			"geom": true
 		},
 		"2018-kanaal-eilanden": {
