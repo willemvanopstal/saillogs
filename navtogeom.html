@@ -1,0 +1,83 @@
+<head>
+    <script src="js/lib/jquery-2.1.1.js" data-target="view,edit"></script>
+</head>
+
+<body>
+    <!-- <iframe src="http://webapp.navionics.com/" style="width:100vw;height:65vh">
+    </iframe> -->
+
+    <div>
+<label for="url">Navionics route ID:</label>
+</div>
+
+<div>
+<textarea rows="1" id="url"></textarea>
+</div>
+<div>
+    <button type="button" onclick="convertRouteUrl()">Convert route URL</button>
+</div>
+
+    <div>
+<label for="route">Navionics route:</label>
+</div>
+
+<div>
+<textarea rows="5" id="route"></textarea>
+</div>
+<div>
+    <button type="button" onclick="convertRoute()">Convert route</button>
+</div>
+
+<div>
+<label for="geom">Geometry</label>
+</div>
+<div>
+<textarea id="geom"></textarea>
+</div>
+
+<script>
+
+    var parseGeom = function(json) {
+        var waypoints = json.route.content.waypoints
+
+        var coordinates = []
+        $.each( waypoints, function( key, waypoint ) {
+            coordinates.push([waypoint.coordinate.lat, waypoint.coordinate.lon])
+        });
+
+        var geom = {
+                "type": "LineString",
+                "coordinates": coordinates
+                }
+
+        return geom
+    }
+
+    var convertRoute = function () {
+        console.log('converting route')
+        var input = $('#route').val()
+        var json = $.parseJSON(input)
+
+        var geom = parseGeom(json)
+
+        $('#geom').val(JSON.stringify(geom))
+    }
+
+    var convertRouteUrl = function() {
+        console.log('convert url')
+        var url = 'https://webapp.navionics.com/api/v2/user/me/routes/marine/' + $('#url').val()
+
+        $.getJSON( url, function( data ) {
+            console.log(data)
+            var geom = parseGeom(data)
+            $('#geom').val(JSON.stringify(geom))
+        });
+    }
+</script>
+
+</body>
+
+
+<!-- $.each(waypoints, function(index, waypoint) {
+    console.log(waypoint)
+};) -->

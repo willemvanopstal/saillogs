@@ -20,9 +20,17 @@
 			"description": "",
 			"geom": true
 		},
-		"2018-kanaal-eilanden": {
+		"2018-friesland": {
 			"visible": true,
-			"title": "Kanaaleilanden 2018",
+			"title": "Friesland 2018",
+			"date": "2020-07-20",
+			"distance": 0,
+			"description": "Rondje Friesland in de zomervakantie.",
+			"geom": true
+		},
+		"2017-kanaal-eilanden": {
+			"visible": true,
+			"title": "Kanaaleilanden 2017",
 			"date": "2020-07-20",
 			"distance": 0,
 			"description": "Zomervakantie naar de Kanaaleilanden.",
